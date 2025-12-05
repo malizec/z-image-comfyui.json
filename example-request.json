@@ -1,0 +1,210 @@
+{
+  "input": {
+    "workflow": {
+      "39": {
+        "inputs": {
+          "filename": "Qwen3_4b_fp8.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "40": {
+        "inputs": {
+          "filename": "Z-Image-Vae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "42": {
+        "inputs": {
+          "conditioning": [
+            "45",
+            0
+          ]
+        },
+        "class_type": "ConditioningZeroOut",
+        "_meta": {
+          "title": "ConditioningZeroOut"
+        }
+      },
+      "43": {
+        "inputs": {
+          "samples": [
+            "44",
+            0
+          ],
+          "vae": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "44": {
+        "inputs": {
+          "seed": 674620454048145,
+          "steps": 8,
+          "cfg": 1,
+          "sampler_name": "res_multistep",
+          "scheduler": "simple",
+          "denoise": 1,
+          "model": [
+            "47",
+            0
+          ],
+          "positive": [
+            "45",
+            0
+          ],
+          "negative": [
+            "42",
+            0
+          ],
+          "latent_image": [
+            "63",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "45": {
+        "inputs": {
+          "text": [
+            "62",
+            0
+          ],
+          "clip": [
+            "39",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "46": {
+        "inputs": {
+          "filename": "Z-Image-Turbo-fp8-e4m3fn.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "47": {
+        "inputs": {
+          "value": 7,
+          "model": [
+            "46",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingAuraFlow",
+        "_meta": {
+          "title": "ModelSamplingAuraFlow"
+        }
+      },
+      "48": {
+        "inputs": {
+          "images": [
+            "43",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "59": {
+        "inputs": {
+          "image": "Closeup-3 (1).png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "60": {
+        "inputs": {
+          "value": 1024,
+          "images": [
+            "59",
+            0
+          ]
+        },
+        "class_type": "easy imageScaleDownToSize",
+        "_meta": {
+          "title": "easy imageScaleDownToSize"
+        }
+      },
+      "61": {
+        "inputs": {
+          "text": "",
+          "image": [
+            "60",
+            0
+          ]
+        },
+        "class_type": "Qwen3_VQA",
+        "_meta": {
+          "title": "Qwen3_VQA"
+        }
+      },
+      "62": {
+        "inputs": {
+          "filename": "[\n    \"This image portrays a woman sitting at a table in what appears to be an upscale rooftop or terrace restaurant at night. She is the central focus, looking directly at the camera with a composed and confident expression. Her dark, wavy hair falls over her shoulders, and she is wearing a stylish, olive-green lace crop top with thin straps and matching bottoms, suggesting a fashionable and elegant outfit.\\n\\nThe setting is atmospheric, with the blurred lights of a city skyline visible in the background, indicating an urban environment. The lighting is soft and moody, with warm tones highlighting her features and the texture of her clothing. On the table in front of her are a wine glass and a menu, reinforcing the context of a dining experience.\\n\\nThe overall mood of the image is sophisticated and intimate, capturing a moment of quiet elegance and poise. The shallow depth of field keeps the focus on her, while the bokeh of distant lights adds depth and ambiance to the scene.\"\n]",
+          "anything": [
+            "61",
+            0
+          ]
+        },
+        "class_type": "easy showAnything",
+        "_meta": {
+          "title": "easy showAnything"
+        }
+      },
+      "63": {
+        "inputs": {
+          "pixels": [
+            "65",
+            0
+          ],
+          "vae": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "64": {
+        "inputs": {},
+        "class_type": "Reroute",
+        "_meta": {
+          "title": "Reroute"
+        }
+      },
+      "65": {
+        "inputs": {},
+        "class_type": "Reroute",
+        "_meta": {
+          "title": "Reroute"
+        }
+      }
+    }
+  }
+}

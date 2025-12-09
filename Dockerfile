@@ -16,7 +16,9 @@ RUN comfy model download --url https://huggingface.co/Comfy-Org/z_image_turbo/re
 # RUN # Could not find URL for Z-Image-Vae.safetensors
 RUN comfy model download --url https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors --relative-path models/vae --filename ae.safetensors
 
-RUN comfy-node-install ComfyUI-QwenVL
+# RUN comfy-node-install ComfyUI-QwenVL
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/IuvenisSapiens/ComfyUI_Qwen3-VL-Instruct
 
 # copy all input data (like images or videos) into comfyui (uncomment and adjust if needed)
 # COPY input/ /comfyui/input/
